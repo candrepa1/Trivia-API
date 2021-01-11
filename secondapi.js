@@ -28,6 +28,8 @@ function getQuestions() {
 function printQuestions(info) {
     let content = document.getElementById('questions-container');
 
+    content.innerHTML = '';
+
     info.results.forEach((element) => {
         content.innerHTML += `<div class="col-md-4 mb-4">
                         <div class="card h-100">
