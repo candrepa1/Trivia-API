@@ -31,14 +31,47 @@ function printQuestions(info) {
     content.innerHTML = '';
 
     info.results.forEach((element) => {
+        let cAnswer = element.correct_answer;
+        let iAnswers = element.incorrect_answers;
+        let allAnswers = iAnswers.concat(cAnswer); 
+        console.log(cAnswer);
+        console.log(allAnswers);
+
         content.innerHTML += `<div class="col-md-4 mb-4">
-                        <div class="card h-100">
-                            <div class="card-body">
-                                ${element.question}
-                            </div>
+                    <div class="card h-100">
+                        <div class="card-body">
+                            ${element.question}
+                            ${getAnswersHTML(allAnswers)}
                         </div>
-                    </div>`
+                    </div>
+                </div>`
     });
+    content.innerHTML += `<button type="submit" class="btn btn-primary mb-3" onclick="">Submit Answers</button>`;
+}
+
+function getAnswersHTML(answers) {
+    let randomAnswers = answers.sort(() => Math.random() - 0.5);
+    console.log(randomAnswers);
+
+    // let name = document.getElementById('randomAnswers');
+
+    let result = '';
+    for(let i = 0; i < randomAnswers.length; i++) {
+        result += `<div class="form-check">
+                    <input class="form-check-input" type="radio" name="radio" id="${randomAnswers[i]}" value="${randomAnswers[i]}" required>
+                    <label class="form-check-label" for="${randomAnswers[i]}">
+                        ${randomAnswers[i]}
+                    </label>
+                    </div>`;
+    }
+
+    return result;
+}
+
+function allRequired(randomAnswers) {
+    for(let i = 0; i < randomAnswers.length; i++) {
+        document.getElementById(`${randomAnswers[i]}`).required = true;
+    }
 }
 
 // https://opentdb.com/api.php?amount=10&category=12&difficulty=medium&type=boolean
