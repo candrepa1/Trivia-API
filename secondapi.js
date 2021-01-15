@@ -49,7 +49,7 @@ function printQuestions(info) {
                     </div>
                 </div>`;
     });
-    content.innerHTML += `<input type="submit" class="btn btn-primary mb-3" value="Submit Answers">`;
+    content.innerHTML += `<input type="submit" class="btn btn-primary mb-3 mw-90" value="Submit Answers">`;
 }
 
 function getAnswersHTML(randomAnswers, index, cAnswer) {
