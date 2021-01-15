@@ -9,7 +9,7 @@
 <body onload="getCategories()">
     <div class="container mt-5 col-5 col-md-4 col-lg-3">
         <h1 class="text-center mb-5">TRIVIA</h1>
-        <form onsubmit="event.preventDefault()" id="trivia-form" action="" class="">
+        <form onsubmit="event.preventDefault()" id="trivia-form" action="" class="d-flex flex-column">
             <label for="questions">Number of Questions</label>
             <select class="form-select" aria-label="Selection of number of questions" id="questions">
                 <option value="10" id="tenq">10</option>
@@ -33,12 +33,19 @@
                 <option value="multiple" id="multiple">Multiple Choice</option>
                 <option value="boolean" id="boolean">True / False</option>
             </select>
-            <button type="submit" class="btn btn-primary mt-3" onclick="getQuestions()">Show Questions</button>
+            <button type="submit" class="btn btn-primary mt-3 text-center" onclick="getQuestions()">Show Questions</button>
         </form>
     </div>
     <div class="container mt-5">
-        <div class="row" id="questions-container">
-            <!-- content goes inside -->
+        <form id="form-answers" onsubmit="event.preventDefault(), validatingAnswers()" action="">
+            <div class="row" id="questions-container">
+                <!-- content goes inside -->
+            </div>
+        </form>
+    </div>
+    <div class="container mt-3 mb-3">
+        <div class="row" id="score-container">
+
         </div>
     </div>
     <script src="./secondapi.js"></script>

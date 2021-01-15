@@ -30,53 +30,72 @@ function printQuestions(info) {
 
     content.innerHTML = '';
 
-    info.results.forEach((element) => {
+    info.results.forEach((element, index) => {
         let cAnswer = element.correct_answer;
         let iAnswers = element.incorrect_answers;
         let allAnswers = iAnswers.concat(cAnswer); 
         console.log(cAnswer);
-        console.log(allAnswers);
+        // console.log(allAnswers);
+
+        let randomAnswers = allAnswers.sort(() => Math.random() - 0.5);
+        console.log(randomAnswers);
 
         content.innerHTML += `<div class="col-md-4 mb-4">
                     <div class="card h-100">
                         <div class="card-body">
                             ${element.question}
-                            ${getAnswersHTML(allAnswers)}
+                            ${getAnswersHTML(randomAnswers, index, cAnswer)}
                         </div>
                     </div>
-                </div>`
+                </div>`;
     });
-    content.innerHTML += `<button type="submit" class="btn btn-primary mb-3" onclick="">Submit Answers</button>`;
+    content.innerHTML += `<input type="submit" class="btn btn-primary mb-3" value="Submit Answers">`;
 }
 
-function getAnswersHTML(answers) {
-    let randomAnswers = answers.sort(() => Math.random() - 0.5);
-    console.log(randomAnswers);
-
-    // let name = document.getElementById('randomAnswers');
+function getAnswersHTML(randomAnswers, index, cAnswer) {
 
     let result = '';
     for(let i = 0; i < randomAnswers.length; i++) {
-        result += `<div class="form-check">
-                    <input class="form-check-input" type="radio" name="radio" id="${randomAnswers[i]}" value="${randomAnswers[i]}" required>
+        if(randomAnswers[i] === cAnswer) {
+            result += `<div class="form-check">
+                    <input class="form-check-input" type="radio" name="group${index}" id="${randomAnswers[i]}" value="correct" required>
                     <label class="form-check-label" for="${randomAnswers[i]}">
                         ${randomAnswers[i]}
                     </label>
                     </div>`;
+        } else {
+            result += `<div class="form-check">
+                    <input class="form-check-input" type="radio" name="group${index}" id="${randomAnswers[i]}" value="incorrect" required>
+                    <label class="form-check-label" for="${randomAnswers[i]}">
+                        ${randomAnswers[i]}
+                    </label>
+                    </div>`;
+        } 
     }
-
     return result;
 }
 
-function allRequired(randomAnswers) {
-    for(let i = 0; i < randomAnswers.length; i++) {
-        document.getElementById(`${randomAnswers[i]}`).required = true;
+function validatingAnswers() {
+    let counter = 0;
+    let length = document.getElementById('questions').value;
+
+    for(let i = 0; i < length; i++) {
+        let rigthWrong = document.querySelector(`input[name="group${i}"]:checked`).value;
+        if(rigthWrong === "correct") {
+            counter += 1;
+        }
     }
+    printScore(counter);
 }
 
-// https://opentdb.com/api.php?amount=10&category=12&difficulty=medium&type=boolean
+function printScore(counter) {
+    let content = document.getElementById('score-container');
+    let numberQ = document.getElementById('questions').value;
 
-// questions: 10;
-// category: music;
-// difficulty: medium;
-// type: true/false;
+    content.innerHTML = `<div class="card border-success mb-3 mx-auto" style="max-width: 18rem;">
+        <div class="card-body text-success">
+        <h5 class="card-title">Your Score: ${counter}/${numberQ}</h5>
+        <p class="card-text">Correct answers: ${counter} <br> Wrong answers: ${numberQ - counter} <br> Total answers: ${numberQ}</p>
+        </div>
+    </div>`
+}
