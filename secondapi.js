@@ -99,7 +99,7 @@ function printScore(counter, length) {
     let content = document.getElementById('score-container');
 
     content.innerHTML = `<div class="card border-success mb-3 mx-auto" style="max-width: 18rem;">
-        <div class="card-body text-success">
+        <div class="card-body text-success text-center">
         <h5 class="card-title">Your Score: ${counter}/${length}</h5>
         <p class="card-text">Correct answers: ${counter} <br> Wrong answers: ${length - counter} <br> Total answers: ${length}</p>
         </div>
