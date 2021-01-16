@@ -7,8 +7,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 </head>
 <body onload="getCategories()">
-    <div class="container mt-5 col-5 col-md-4 col-lg-3">
-        <h1 class="text-center mb-5">TRIVIA</h1>
+    <div class="container mt-3 col-5 col-md-4 col-lg-3">
+        <h1 class="text-center mb-4">TRIVIA</h1>
         <form onsubmit="event.preventDefault()" id="trivia-form" action="" class="d-flex flex-column">
             <label for="questions">Number of Questions</label>
             <select class="form-select" aria-label="Selection of number of questions" id="questions">
@@ -37,17 +37,17 @@
         </form>
     </div>
     <div class="container mt-5">
-        <div class="row" id="questions-container"></div>
-            <form id="form-answers" onsubmit="event.preventDefault(), validatingAnswers()" action="">
-                    <!-- content goes inside -->
-            </form>
-        </div>
+        <form id="form-questions" onsubmit="event.preventDefault(), validatingAnswers()" action=""> 
+            <div class="row" id="questions-container">
+                        <!-- content goes inside -->
+            </div>
+        </form>
     </div>
     <div class="container mt-3 mb-3">
         <div class="row" id="score-container">
 
         </div>
     </div>
-    <script src="./secondapi.js"></script>
+    <script src="secondapi.js"></script>
 </body>
 </html>
