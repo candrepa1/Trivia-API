@@ -44,7 +44,7 @@ function printQuestions(info) {
         let randomAnswers = allAnswers.sort(() => Math.random() - 0.5);
         console.log(randomAnswers);
 
-        content.innerHTML += `<div class="col-md-4 mb-4">
+        content.innerHTML += `<div class="col-md-6 mb-4">
                     <div class="card h-100">
                         <div class="card-body">
                             ${element.question}
@@ -98,7 +98,7 @@ function validatingAnswers() {
 function printScore(counter, length) {
     let content = document.getElementById('score-container');
 
-    content.innerHTML = `<div class="card border-success mb-3 mx-auto" style="max-width: 18rem;">
+    content.innerHTML = `<div class="card border-success mb-3 mt-4 mx-auto" style="max-width: 18rem;">
         <div class="card-body text-success text-center">
         <h5 class="card-title">Your Score: ${counter}/${length}</h5>
         <p class="card-text">Correct answers: ${counter} <br> Wrong answers: ${length - counter} <br> Total answers: ${length}</p>
