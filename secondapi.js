@@ -26,6 +26,9 @@ function getQuestions() {
     fetch(`${url}`)
         .then((response) => response.json())
         .then((info) => printQuestions(info))
+    ;
+    let score = document.getElementById('score-container');
+    score.innerHTML = '';
 }
 
 // The function is called in the API call, prints each question available depending on the parameters chosen by the user. Also gets the answers of each question, both correct and incorrect, and the prints them by calling getAnswersHTML().
