@@ -34,29 +34,35 @@ function printQuestions(info) {
 
     content.innerHTML = '';
 
-    info.results.forEach((element, index) => {
-        let cAnswer = element.correct_answer;
-        let iAnswers = element.incorrect_answers;
-        let allAnswers = iAnswers.concat(cAnswer); 
-        console.log(cAnswer);
-        // console.log(allAnswers);
-
-        let randomAnswers = allAnswers.sort(() => Math.random() - 0.5);
-        console.log(randomAnswers);
-
-        content.innerHTML += `<div class="col-md-6 mb-4">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            ${element.question}
-                            ${getAnswersHTML(randomAnswers, index, cAnswer)}
+    if(info.results.length == 0) {
+        content.innerHTML = `<div class="alert alert-danger" role="alert">
+            There are not enough questions to match your selections. Please choose different options!
+        </div>`
+    } else {
+        info.results.forEach((element, index) => {
+            let cAnswer = element.correct_answer;
+            let iAnswers = element.incorrect_answers;
+            let allAnswers = iAnswers.concat(cAnswer); 
+            console.log(cAnswer);
+            // console.log(allAnswers);
+    
+            let randomAnswers = allAnswers.sort(() => Math.random() - 0.5);
+            console.log(randomAnswers);
+    
+            content.innerHTML += `<div class="col-md-6 mb-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                ${element.question}
+                                ${getAnswersHTML(randomAnswers, index, cAnswer)}
+                            </div>
                         </div>
-                    </div>
-                </div>`;
-    });
-    content.innerHTML += `<div class="d-flex justify-content-center"><input type="submit" class="btn btn-primary py-2 px-5 mb-3" value="Submit Answers"></div>`;
+                    </div>`;
+        });
+        content.innerHTML += `<div class="d-flex justify-content-center mb-4"><input type="submit" class="btn btn-primary py-2 px-5" value="Submit Answers"></div>`;
+    }
 }
 
-// Prints the answers for the questions, checks if the current answer inside the loop is the correct one, if it is, it adds 'correct' as its value, if not, it adds 'incorrect' to its value. 
+// Prints the answers for the questions. Checks if the result array that is return from the API call is empty or not. Checks if the current answer inside the loop is the correct one, if it is, it adds 'correct' as its value, if not, it adds 'incorrect' to its value. 
 function getAnswersHTML(randomAnswers, index, cAnswer) {
 
     let result = '';
