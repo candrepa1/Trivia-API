@@ -63,15 +63,15 @@ function getAnswersHTML(randomAnswers, index, cAnswer) {
     for(let i = 0; i < randomAnswers.length; i++) {
         if(randomAnswers[i] === cAnswer) {
             result += `<div class="form-check">
-                    <input class="form-check-input" type="radio" name="group${index}" id="${randomAnswers[i]}" value="correct" required>
-                    <label class="form-check-label" for="${randomAnswers[i]}">
+                    <input class="form-check-input" type="radio" name="group${index}" id="${randomAnswers[i]}${index}" value="correct" required>
+                    <label class="form-check-label" for="${randomAnswers[i]}${index}">
                         ${randomAnswers[i]}
                     </label>
                     </div>`;
         } else {
             result += `<div class="form-check">
-                    <input class="form-check-input" type="radio" name="group${index}" id="${randomAnswers[i]}" value="incorrect" required>
-                    <label class="form-check-label" for="${randomAnswers[i]}">
+                    <input class="form-check-input" type="radio" name="group${index}" id="${randomAnswers[i]}${index}" value="incorrect" required>
+                    <label class="form-check-label" for="${randomAnswers[i]}${index}">
                         ${randomAnswers[i]}
                     </label>
                     </div>`;
